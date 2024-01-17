@@ -57,7 +57,11 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ Route::currentRouteName() == 'admin.categories.index' ? 'active' : '' }}"
-                                href="{{ route('admin.categories.index') }}">Categories</a>
+                                href="{{ route('admin.categories.index') }}">Types</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Route::currentRouteName() == 'admin.technologies.index' ? 'active' : '' }}"
+                                href="{{ route('admin.technologies.index') }}">Technologies</a>
                         </li>
                     </ul>
 

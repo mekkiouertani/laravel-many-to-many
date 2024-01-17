@@ -32,7 +32,7 @@ Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(
     Route::resource('categories', CategoryController::class)->parameters([
         'categories' => 'category:slug'
     ]);
-    Route::resource('categories', TechnologyController::class)->parameters([
+    Route::resource('technologies', TechnologyController::class)->parameters([
         'technologies' => 'technologies:slug'
     ]);
 });

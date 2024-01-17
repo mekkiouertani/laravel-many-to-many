@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateTechnologyRequest extends FormRequest
@@ -22,7 +23,14 @@ class UpdateTechnologyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', Rule::unique('technologies')->ignore($this->technology)]
+        ];
+    }
+    public function message()
+    {
+        return [
+            'name.required' => 'Il nome è obbligatorio',
+            'name.unique' => 'Questo nome esiste già'
         ];
     }
 }

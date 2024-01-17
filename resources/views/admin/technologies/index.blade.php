@@ -20,18 +20,18 @@
                 @foreach ($technologies as $technology)
                     <tr>
                         <th scope="row">
-                            {{--   <a href="{{ route('admin.technologies.show', $technology->slug) }}">
+                            <a href="{{ route('admin.technologies.show', $technology->slug) }}">
                                 <i class="fa-regular fa-eye"></i>
-                            </a> --}}
+                            </a>
                         </th>
                         <td> {{ $technology->name }}</td>
-                        <td> {{-- <a href="{{ route('admin.technologies.edit', $technology->slug) }}"
-                                class="btn btn-warning">Edit</a> --}}
-                            {{--  <form action="{{ route('admin.technologies.destroy', $technology->slug) }}" method="POST"
+                        <td> <a href="{{ route('admin.technologies.edit', $technology->slug) }}"
+                                class="btn btn-warning">Edit</a>
+                            <form action="{{ route('admin.technologies.destroy', $technology->slug) }}" method="POST"
                                 class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                {{--    <button type="submit" class="btn btn-danger cancel-button">Delete</button> --}}
+                                <button type="submit" class="btn btn-danger cancel-button">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -39,7 +39,7 @@
             </tbody>
         </table>
         <button class="btn btn-primary mt-3">
-            {{--   <a class="text-white text-decoration-none" href="{{ route('admin.technologies.create') }}">Create</a> --}}
+            <a class="text-white text-decoration-none" href="{{ route('admin.technologies.create') }}">Create</a>
         </button>
     </section>
     @include('partials.modal_delete')

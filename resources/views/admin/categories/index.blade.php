@@ -25,13 +25,13 @@
                             </a>
                         </th>
                         <td> {{ $category->name }}</td>
-                        <td> {{-- <a href="{{ route('admin.categories.edit', $category->slug) }}"
-                                class="btn btn-warning">Edit</a> --}}
+                        <td> <a href="{{ route('admin.categories.edit', $category->slug) }}"
+                                class="btn btn-warning">Edit</a>
                             <form action="{{ route('admin.categories.destroy', $category->slug) }}" method="POST"
                                 class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                {{--    <button type="submit" class="btn btn-danger cancel-button">Delete</button> --}}
+                                <button type="submit" class="btn btn-danger cancel-button">Delete</button>
                             </form>
                         </td>
                     </tr>

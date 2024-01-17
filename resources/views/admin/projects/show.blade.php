@@ -4,7 +4,18 @@
         <h1>{{ $project->title }}</h1>
         <p>{!! $project->body !!}</p>
         <h6><a href="{{ $project->url }}">Github</a></h6>
-        <span>{{ $project->category ? $project->category->name : 'Uncategorized' }}</span>
+        <h4>Types</h4>
+        <a href="{{ route('admin.categories.show', $project->category->slug) }}"
+            class="badge rounded-pill text-bg-primary">{{ $project->category ? $project->category->name : 'Uncategorized' }}</a>
+        {{-- tecnologie --}}
+        <div class="mb-3">
+            <h4>Technologies</h4>
+            @foreach ($project->technologies as $tech)
+                <a href="{{ route('admin.technologies.show', $tech->slug) }}"
+                    class="badge rounded-pill text-bg-success">{{ $tech->name }}</a>
+            @endforeach
+        </div>
+        {{--  --}}
         <img class="w-25 d-block mb-5" src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}">
 
 

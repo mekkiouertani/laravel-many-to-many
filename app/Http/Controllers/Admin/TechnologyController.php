@@ -24,6 +24,7 @@ class TechnologyController extends Controller
      */
     public function create()
     {
+
         return view('admin.technologies.create');
     }
 
@@ -32,15 +33,21 @@ class TechnologyController extends Controller
      */
     public function store(StoreTechnologyRequest $request)
     {
-        //
+        $formData = $request->validated();
+
+        $slug = Str::of($formData['name'])->slug('-');
+        $formData['slug'] = $slug;
+        $technology = Technology::create($formData);
+        return redirect('admin.technologies.show', $technology->slug);
     }
 
     /**
      * Display the specified resource.
      */
+
     public function show(Technology $technology)
     {
-        return view('admin.technologies.show', compact('technologies'));
+        return view('admin.technologies.show', compact('technology'));
     }
 
     /**
@@ -48,6 +55,7 @@ class TechnologyController extends Controller
      */
     public function edit(Technology $technology)
     {
+        return view('admin.technologies.edit', compact('technologies'));
     }
 
     /**
@@ -55,7 +63,13 @@ class TechnologyController extends Controller
      */
     public function update(UpdateTechnologyRequest $request, Technology $technology)
     {
-        //
+        $formData = $request->validated();
+        $formData['slug'] = $technology->slug;
+
+        $slug = Str::of($formData['name'])->slug('-');
+        $formData['slug'] = $slug;
+        $technology = Technology::create($formData);
+        return redirect('admin.technologies.show', $technology->slug);
     }
 
     /**
@@ -63,6 +77,7 @@ class TechnologyController extends Controller
      */
     public function destroy(Technology $technology)
     {
-        //
+        $technology->delete();
+        return redirect('admin.technologies.index')->with('message', "$technology->name eliminato");
     }
 }

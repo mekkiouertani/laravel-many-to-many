@@ -22,7 +22,15 @@ class StoreTechnologyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'unique:techlogies']
+        ];
+    }
+
+    public function message()
+    {
+        return [
+            'name.required' => 'Il nome è obbligatorio',
+            'name.unique' => 'Questo nome esiste già'
         ];
     }
 }

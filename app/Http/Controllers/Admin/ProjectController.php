@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Category;
+use App\Models\Technology;
 
 class ProjectController extends Controller
 {
@@ -28,7 +29,8 @@ class ProjectController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.projects.create', compact('categories'));
+        $technologies = Technology::all();
+        return view('admin.projects.create', compact('categories', 'technologies'));
     }
 
     /**
@@ -49,6 +51,10 @@ class ProjectController extends Controller
         //dd($path);
 
         $project = Project::create($formData);
+        if ($request->has('technologies')) {
+            $project->technologies()->attach($request->technologies);
+        }
+
         return redirect()->route('admin.projects.show', $project->slug);
     }
 
@@ -66,7 +72,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $categories = Category::all();
-        return view('admin.projects.edit', compact('project', 'categories'));
+        $technologies = Technology::all();
+        return view('admin.projects.edit', compact('project', 'categories', 'technologies'));
     }
 
     /**
@@ -91,6 +98,9 @@ class ProjectController extends Controller
         }
 
         $project->update($formData);
+        if ($request->has('technologies')) {
+            $project->technologies()->attach($request->technologies);
+        }
         return redirect()->route('admin.projects.show', $project->slug);
     }
 

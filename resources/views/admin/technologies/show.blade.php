@@ -14,5 +14,5 @@
                 </li>
             @endforeach
         </ul>
-        @endif
-    @endsection
+    </section>
+@endsection
